@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <title>Formulario</title>
+    <style>
+        
+        button {
+            background-color: #FF4081; 
+            color: #fff;
+            padding: 15px 20px; 
+            font-size: 1.2rem; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Escoge tu lugar de origen</h2>
+
+    <form id="locationForm" action="#">
+        <select name="" id="country">
+            <option value="">-- País --</option>
+           
+        </select>
+        <select name="" id="state">
+            <option value="">-- Estado --</option>
+            
+        </select>
+        <select name="" id="city">
+            <option value="">-- Ciudad --</option>
+           
+        </select>
+        <select name="" id="zip">
+            <option value="">-- Localidad --</option>
+           
+        </select>
+
+        
+        <button type="button" onclick="mostrarDatos()">Enviar</button>
+        
+        
+        <p id="datosUsuario"></p>
+    </form>
+
+</div>
+
+<script src="./js/script.js"></script>
+
+<script>
+    function mostrarDatos() {
+        // Obtén los valores seleccionados
+        var pais = document.getElementById("country").value;
+        var estado = document.getElementById("state").value;
+        var ciudad = document.getElementById("city").value;
+        var localidad = document.getElementById("zip").value;
+
+        // Construye el mensaje para mostrar
+        var mensaje = "País: " + pais + "<br>" +
+                      "Estado: " + estado + "<br>" +
+                      "Ciudad: " + ciudad + "<br>" +
+                      "Localidad: " + localidad;
+
+        // Muestra los datos al usuario
+        document.getElementById("datosUsuario").innerHTML = mensaje;
+    }
+</script>
+<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('js/sw.js')
+          .then(registration => {
+            console.log('Service Worker registrado:', registration);
+          })
+          .catch(error => {
+            console.log('Error al registrar el Service Worker:', error);
+          });
+      });
+    }
+  </script>
+
+</body>
+</html>
